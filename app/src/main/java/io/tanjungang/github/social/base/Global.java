@@ -1,6 +1,6 @@
 package io.tanjungang.github.social.base;
 
-import io.tanjundang.github.BuildConfig;
+import io.tanjundang.github.projectutils.BuildConfig;
 
 
 /**
