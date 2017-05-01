@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ProjectUtils</string>
+    <string name="common_sex_male">男</string>
+    <string name="common_sex_female">女</string>
+</resources>

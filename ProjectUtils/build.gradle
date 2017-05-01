@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    publishNonDefault true
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug { //测试服 测试签名
+            minifyEnabled false
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            manifestPlaceholders = [UMENG_APPKEY: "570104fde0f55aedba00200d-DEB"]
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    testCompile 'junit:junit:4.12'
+    compile 'com.loopj.android:android-async-http:1.4.8'
+    compile files('libs/AMap_Location_V2.5.0_20160526.jar')
+    compile 'org.apache.httpcomponents:httpcore:4.4.4'
+//    GSON
+    compile 'com.google.code.gson:gson:2.3.1'
+
+//    rxjava
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+//    ImageLoader
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+
+//    友盟统计
+    compile 'com.umeng.analytics:analytics:latest.integration'
+
+//    retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+//  chrome调试数据库
+    compile 'com.facebook.stetho:stetho:1.3.1'
+}
