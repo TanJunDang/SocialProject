@@ -4,7 +4,7 @@ import android.content.Context;
 
 import io.tanjungang.github.social.base.model.TianGouModel;
 import io.tanjungang.github.social.base.view.ITianGouView;
-import io.tanjungang.github.social.entity.TianGouResp;
+import io.tanjungang.github.social.base.entity.TianGouResp;
 
 /**
  * Author: TanJunDang

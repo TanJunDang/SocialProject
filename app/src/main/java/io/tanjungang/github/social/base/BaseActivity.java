@@ -17,11 +17,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected final String TAG = getClass().getName();
     protected final String AUTHOR = "TanJunDang";
 
-    protected abstract void intData();
+    protected abstract int getLayoutId();
 
     protected abstract void initView();
 
-    protected abstract int getLayoutId();
+    protected abstract void intData();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package io.tanjungang.github.social.entity;
+package io.tanjungang.github.social.base.entity;
 
 import java.util.ArrayList;
 

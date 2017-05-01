@@ -3,10 +3,8 @@ package io.tanjungang.github.social.base.model;
 import android.content.Context;
 
 import io.tanjundang.github.projectutils.network.HttpCallback;
-import io.tanjundang.github.projectutils.network.HttpReqTool;
-import io.tanjungang.github.social.base.api.BusinessApi;
 import io.tanjungang.github.social.base.presenter.TianGouPresenter;
-import io.tanjungang.github.social.entity.TianGouResp;
+import io.tanjungang.github.social.base.entity.TianGouResp;
 
 /**
  * Author: TanJunDang
