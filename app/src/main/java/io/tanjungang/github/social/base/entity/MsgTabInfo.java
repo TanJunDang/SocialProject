@@ -2,6 +2,8 @@ package io.tanjungang.github.social.base.entity;
 
 import android.support.design.widget.TabLayout;
 
+import io.tanjundang.github.projectutils.utils.LogTool;
+
 /**
  * Author: TanJunDang
  * Email: TanJunDang@126.com

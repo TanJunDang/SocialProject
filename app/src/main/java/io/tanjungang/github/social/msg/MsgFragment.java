@@ -7,10 +7,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.TableLayout;
 
 import java.util.ArrayList;
 
+import io.tanjundang.github.projectutils.utils.LogTool;
 import io.tanjungang.github.social.R;
 import io.tanjungang.github.social.base.BaseFragment;
 import io.tanjungang.github.social.base.entity.MsgTabInfo;
@@ -54,6 +54,7 @@ public class MsgFragment extends BaseFragment {
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mAdapter = new MsgTabAdapter(getFragmentManager());
         viewPager.setAdapter(mAdapter);
+        viewPager.setOffscreenPageLimit(0);
         tabLayout.setupWithViewPager(viewPager);
     }
 

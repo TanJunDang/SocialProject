@@ -6,6 +6,6 @@ package io.tanjungang.github.social.base.model;
  * Date:2017/4/24
  */
 
-public interface ITianGouModel {
-    void request();
+public interface IBaseModel {
+    void request(String type);
 }

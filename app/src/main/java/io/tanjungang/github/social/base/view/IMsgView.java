@@ -6,7 +6,7 @@ package io.tanjungang.github.social.base.view;
  * Date:2017/4/24
  */
 
-public interface ITianGouView<T> {
+public interface IMsgView<T> {
     void refreshUI(T data);
 
     void showFailureUI(String errorMsg);

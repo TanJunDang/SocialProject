@@ -6,7 +6,7 @@ package io.tanjungang.github.social.base.presenter;
  * Date:2017/4/24
  */
 
-public interface ITianGouPresenter<T> {
+public interface IMsgPresenter<T> {
     // Model请求成功的回调，参数同View接口
     void modelHandleSuccess(T resp);
 

@@ -1,21 +1,43 @@
 package io.tanjungang.github.social.msg;
 
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+
 import io.tanjundang.github.projectutils.base.Constant;
+import io.tanjundang.github.projectutils.utils.LogTool;
 import io.tanjungang.github.social.R;
 import io.tanjungang.github.social.base.BaseFragment;
+import io.tanjungang.github.social.base.entity.MsgBean;
+import io.tanjungang.github.social.base.entity.MsgTabInfo;
+import io.tanjungang.github.social.base.presenter.MsgPresenter;
+import io.tanjungang.github.social.base.view.IMsgView;
+import io.tanjungang.github.social.base.widget.ItemDivider;
 
-public class CommonFragment extends BaseFragment {
+public class CommonFragment extends Fragment implements IMsgView<MsgBean> {
 
     private TextView tvTest;
+    private RecyclerView recyclerview;
     private String type;
+    private MsgPresenter presenter;
+    private boolean isShowPage = true;
+
+    private NewsAdapter mAdapter;
+    private ArrayList<MsgBean.MsgRespon.MsgInfo> list = new ArrayList<>();
 
     public static CommonFragment newInstance(String type) {
         CommonFragment fragment = new CommonFragment();
@@ -26,19 +48,96 @@ public class CommonFragment extends BaseFragment {
     }
 
     @Override
-    protected int getLayoutId() {
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        if (isVisibleToUser) {
+//            intData();
+//        } else {
+//            isShowPage = false;
+//        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
         type = getArguments().getString(Constant.TYPE);
-        return R.layout.fragment_common;
     }
 
+    @Nullable
     @Override
-    protected void initView(View view) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_common, container, false);
         tvTest = (TextView) view.findViewById(R.id.tvTest);
+        recyclerview = (RecyclerView) view.findViewById(R.id.recyclerview);
+        recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerview.addItemDecoration(new ItemDivider(Color.RED, ItemDivider.VERTICAL));
+        mAdapter = new NewsAdapter();
+        recyclerview.setAdapter(mAdapter);
+//        if (isShowPage) {
+//        }
+        intData();
+        return view;
+    }
+
+    protected void intData() {
+        if (tvTest == null) {
+            isShowPage = true;
+        } else {
+            tvTest.setText(type);
+            presenter = new MsgPresenter(getContext(), this, type);
+            isShowPage = false;
+        }
     }
 
     @Override
-    protected void intData() {
-        tvTest.setText(type);
+    public void refreshUI(MsgBean data) {
+        list.addAll(data.getResult().getData());
+        mAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showFailureUI(String errorMsg) {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (presenter != null)
+            presenter.release();
+        super.onDestroy();
+    }
+
+    class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
+
+        @Override
+        public NewsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.item_news, parent, false);
+            return new NewsHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(NewsHolder holder, int position) {
+            MsgBean.MsgRespon.MsgInfo info = list.get(position);
+            Glide.with(getContext()).load(info.getThumbnail_pic_s()).into(holder.imageView);
+            holder.tvTitle.setText(info.getTitle());
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+
+        class NewsHolder extends RecyclerView.ViewHolder {
+
+            private View rootview;
+            private ImageView imageView;
+            private TextView tvTitle;
+
+            public NewsHolder(View itemView) {
+                super(itemView);
+                rootview = itemView;
+                imageView = (ImageView) rootview.findViewById(R.id.imageView);
+                tvTitle = (TextView) rootview.findViewById(R.id.tvTitle);
+            }
+        }
+    }
 }

@@ -1,11 +1,15 @@
 package io.tanjundang.github.projectutils.network;
 
+import android.util.Log;
+
 import java.io.IOException;
 
+import io.tanjundang.github.projectutils.utils.LogTool;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -18,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitTool {
 
     private Retrofit retrofit;
-    private static String baseUrl = "http://www.tngou.net/api/top/";
+    private static String baseUrl = "http://v.juhe.cn";
 
     private static class Holder {
         private static RetrofitTool INSTANCE = new RetrofitTool();
@@ -40,18 +44,27 @@ public class RetrofitTool {
 
     private OkHttpClient getOKHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
-        builder.addInterceptor(new Interceptor() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
-            public Response intercept(Chain chain) throws IOException, java.io.IOException {
-                Request request = chain
-                        .request()
-                        .newBuilder()
-//                        .addHeader("Source", "android")
-//                        .addHeader("Accept", "application/json,text/javascript,*/*")
-                        .build();
-                return chain.proceed(request);
+            public void log(String message) {
+                //打印retrofit日志
+                LogTool.i("RetrofitLog", "retrofitBack = " + message);
             }
         });
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        builder.addInterceptor(loggingInterceptor)
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException, java.io.IOException {
+                        Request request = chain
+                                .request()
+                                .newBuilder()
+//                        .addHeader("Source", "android")
+//                        .addHeader("Accept", "application/json,text/javascript,*/*")
+                                .build();
+                        return chain.proceed(request);
+                    }
+                });
         return builder.build();
     }
 
