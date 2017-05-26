@@ -1,16 +1,24 @@
 package io.tanjungang.github.social.msg;
 
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -69,7 +77,8 @@ public class CommonFragment extends Fragment implements IMsgView<MsgBean> {
         tvTest = (TextView) view.findViewById(R.id.tvTest);
         recyclerview = (RecyclerView) view.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerview.addItemDecoration(new ItemDivider(Color.RED, ItemDivider.VERTICAL));
+        recyclerview.addItemDecoration(new ItemDivider(Color.TRANSPARENT, ItemDivider.VERTICAL));
+
         mAdapter = new NewsAdapter();
         recyclerview.setAdapter(mAdapter);
 //        if (isShowPage) {
@@ -99,6 +108,17 @@ public class CommonFragment extends Fragment implements IMsgView<MsgBean> {
 
     }
 
+    int lastPosition = -1;
+
+    private void setAnimation(View viewToAnimate, int position) {
+        if (position > lastPosition) {
+            Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(), R
+                    .anim.item_bottom_in);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+    }
+
     @Override
     public void onDestroy() {
         if (presenter != null)
@@ -108,17 +128,32 @@ public class CommonFragment extends Fragment implements IMsgView<MsgBean> {
 
     class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
 
+        int dataTag = R.layout.item_news;
+
         @Override
         public NewsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.item_news, parent, false);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String website = (String) v.getTag(dataTag);
+                    Uri uri = Uri.parse(website);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
+            });
             return new NewsHolder(view);
         }
 
         @Override
         public void onBindViewHolder(NewsHolder holder, int position) {
             MsgBean.MsgRespon.MsgInfo info = list.get(position);
-            Glide.with(getContext()).load(info.getThumbnail_pic_s()).into(holder.imageView);
+            Glide.with(getContext()).load(info.getThumbnail_pic_s()).into(holder.ivIcon);
             holder.tvTitle.setText(info.getTitle());
+            holder.tvDate.setText(info.getDate());
+            holder.tvSource.setText(info.getAuthor_name());
+            setAnimation(holder.rootview, position);
+            holder.rootview.setTag(dataTag, info.getUrl());
         }
 
         @Override
@@ -129,14 +164,18 @@ public class CommonFragment extends Fragment implements IMsgView<MsgBean> {
         class NewsHolder extends RecyclerView.ViewHolder {
 
             private View rootview;
-            private ImageView imageView;
+            private ImageView ivIcon;
             private TextView tvTitle;
+            private TextView tvDate;
+            private TextView tvSource;
 
             public NewsHolder(View itemView) {
                 super(itemView);
                 rootview = itemView;
-                imageView = (ImageView) rootview.findViewById(R.id.imageView);
+                ivIcon = (ImageView) rootview.findViewById(R.id.ivIcon);
                 tvTitle = (TextView) rootview.findViewById(R.id.tvTitle);
+                tvDate = (TextView) rootview.findViewById(R.id.tvDate);
+                tvSource = (TextView) rootview.findViewById(R.id.tvSource);
             }
         }
     }
