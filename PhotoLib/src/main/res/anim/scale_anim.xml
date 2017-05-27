@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scale xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="300"
+    android:fillAfter="true"
+    android:fromXScale="0"
+    android:fromYScale="0"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:toXScale="1.5"
+    android:toYScale="1.5"></scale>
+
+    <!--
+    pivotX/Y 是指从哪个点开始缩放 50% 为中心原点 如果为0，则是左上角开始缩放到中间 一定要用百分数表示，用小数无效
+    fromX/YScale 开始的样子 默认1为原来的大小，0为(没有)，大于1为扩大。
+    toX/YScale 结束的样子 同上
+    示例：fromXY="0" toXY="1" 表示从没有到原来的样子进行缩放，fromXY="1" toXY="1.5" 表示从原来的样子扩大1.5倍
+    fillAfter 结束动画是否保存 true-保存结束的样子 false-不保存
+    duration 设置动画时间 默认通常设置为300，单位毫秒
+    -->

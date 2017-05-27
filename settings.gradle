@@ -1,1 +1,1 @@
-include ':app', 'ProjectUtils'
+include ':app', 'ProjectUtils', 'PhotoLib'

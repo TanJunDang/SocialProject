@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="300"
+    android:fillAfter="true"
+    android:fromDegrees="0"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:repeatCount="infinite"
+    android:repeatMode="restart"
+    android:toDegrees="360"></rotate>
+
+    <!--
+      pivotX/Y 是指从哪个点开始旋转 50% 为中心原点 如果为0，则是左上角开始缩放到中间 一定要用百分数表示，用小数无效
+      repeatMode 是指重复模式 restart表示重复
+    -->
+

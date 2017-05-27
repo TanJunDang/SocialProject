@@ -1,0 +1,4 @@
+<resources>
+    <!--photopick-->
+    <dimen name="pickimage_gridlist_item_space">4dp</dimen>
+</resources>

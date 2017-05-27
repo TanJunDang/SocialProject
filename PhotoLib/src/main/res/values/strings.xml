@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PhotoLib</string>
+    <string name="photopick_text_camera">相机</string>
+    <string name="activity_photopick_title">图片</string>
+    <string name="photo_count_format_text">%1$d张</string>
+    <string name="photopick_all_photo_folder_name">所有图片</string>
+    <string name="photopick_complete_text_format">完成(%1$d/%2$d)</string>
+    <string name="photopick_preview_text_format">预览(%1$d/%2$d)</string>
+    <string name="photopick_sure_text">确定(%1$d/%2$d)</string>
+    <string name="photopick_total_limit_toast">最多只能选择%1$d张</string>
+    <string name="photopick_my_photo">我的照片</string>
+</resources>
