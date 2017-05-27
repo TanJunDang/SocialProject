@@ -2,9 +2,6 @@ package io.tanjungang.github.social;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -134,7 +131,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             selected(2);
         } else if (id == R.id.item_share) {
             selected(3);
-        } else if (id == R.id.item_send) {
+        } else if (id == R.id.item_msg) {
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -187,5 +184,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
         }
         return fragment;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) return;
     }
 }

@@ -53,7 +53,7 @@ public class ImageLoaderTool {
      * @param context 在APP中
      */
     public static void initImageLoader(Context context) {
-        File diskCache = StorageUtils.getOwnCacheDirectory(context, "Movie/ImageCache/");
+        File diskCache = StorageUtils.getOwnCacheDirectory(context, "TJDPJ/ImageCache/");
         if (configuration == null) {
             configuration = new ImageLoaderConfiguration.Builder(context)
                     .diskCache(new UnlimitedDiscCache(diskCache))

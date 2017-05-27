@@ -50,7 +50,7 @@ public class Functions {
 
     public static void toast(CharSequence text) {
         if (appContext == null) {
-            return;
+            throw new RuntimeException("Function need to be init");
         }
         Toast.makeText(appContext, text, Toast.LENGTH_SHORT).show();
     }
