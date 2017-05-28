@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.item_msg) {
+        if (id == R.id.item_news) {
             selected(0);
         } else if (id == R.id.item_video) {
             selected(1);

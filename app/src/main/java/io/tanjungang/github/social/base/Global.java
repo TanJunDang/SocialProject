@@ -13,4 +13,12 @@ import io.tanjundang.github.projectutils.BuildConfig;
 public class Global {
     public static boolean DEBUG = BuildConfig.LOG_DEBUG;
 
+    public static Global getInstance() {
+        return Holder.INSTANCE;
+    }
+
+    private static class Holder {
+        static Global INSTANCE = new Global();
+    }
+
 }

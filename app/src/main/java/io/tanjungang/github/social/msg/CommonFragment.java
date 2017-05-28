@@ -1,7 +1,6 @@
 package io.tanjungang.github.social.msg;
 
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,14 +8,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -27,12 +23,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import io.tanjundang.github.projectutils.base.Constant;
-import io.tanjundang.github.projectutils.utils.LogTool;
 import io.tanjungang.github.social.R;
-import io.tanjungang.github.social.base.BaseFragment;
 import io.tanjungang.github.social.base.entity.MsgBean;
-import io.tanjungang.github.social.base.entity.MsgTabInfo;
-import io.tanjungang.github.social.base.presenter.MsgPresenter;
+import io.tanjungang.github.social.msg.presenter.MsgPresenter;
 import io.tanjungang.github.social.base.view.IMsgView;
 import io.tanjungang.github.social.base.widget.ItemDivider;
 
