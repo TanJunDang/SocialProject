@@ -1,9 +1,10 @@
-package io.tanjungang.github.social.base.presenter;
+package io.tanjungang.github.social.msg.presenter;
 
 import android.content.Context;
 
 import io.tanjungang.github.social.base.entity.MsgBean;
-import io.tanjungang.github.social.base.model.BaseModel;
+import io.tanjungang.github.social.msg.model.BaseModel;
+import io.tanjungang.github.social.base.presenter.IMsgPresenter;
 import io.tanjungang.github.social.base.view.IMsgView;
 
 /**

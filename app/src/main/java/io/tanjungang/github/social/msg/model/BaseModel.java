@@ -1,4 +1,4 @@
-package io.tanjungang.github.social.base.model;
+package io.tanjungang.github.social.msg.model;
 
 import android.content.Context;
 
@@ -6,7 +6,8 @@ import io.tanjundang.github.projectutils.network.HttpCallback;
 import io.tanjundang.github.projectutils.network.HttpReqTool;
 import io.tanjungang.github.social.base.api.BusinessApi;
 import io.tanjungang.github.social.base.entity.MsgBean;
-import io.tanjungang.github.social.base.presenter.MsgPresenter;
+import io.tanjungang.github.social.base.model.IBaseModel;
+import io.tanjungang.github.social.msg.presenter.MsgPresenter;
 
 /**
  * Author: TanJunDang

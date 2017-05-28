@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.facebook.stetho.Stetho;
 
+import cn.bmob.v3.Bmob;
 import io.tanjundang.github.projectutils.utils.Functions;
 import io.tanjundang.github.projectutils.utils.ImageLoaderTool;
 
@@ -14,6 +15,7 @@ import io.tanjundang.github.projectutils.utils.ImageLoaderTool;
  */
 public class BaseApplication extends Application {
     public static String AUTHOR = "TanJunDang";
+    private final String BMOB_ID = "d6a0201b0976a21c653b5be232a5b12d";
 
     @Override
     public void onCreate() {
@@ -21,5 +23,6 @@ public class BaseApplication extends Application {
         Functions.init(getApplicationContext());
         ImageLoaderTool.initImageLoader(getApplicationContext());
         Stetho.initializeWithDefaults(this);
+        Bmob.initialize(getApplicationContext(), BMOB_ID);
     }
 }
