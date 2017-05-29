@@ -14,12 +14,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import io.tanjundang.github.ImageInfo;
+import io.tanjundang.github.PhotoPickActivity;
+import io.tanjundang.github.projectutils.network.FileUploadCallback;
+import io.tanjundang.github.projectutils.utils.Functions;
+import io.tanjundang.github.projectutils.utils.LogTool;
+import io.tanjundang.github.utils.PhotoCompress;
 import io.tanjungang.github.social.base.BaseActivity;
 import io.tanjungang.github.social.base.BaseFragment;
+import io.tanjungang.github.social.base.network.BmobApi;
 import io.tanjungang.github.social.msg.MsgFragment;
 import io.tanjungang.github.social.setting.SettingFragment;
 import io.tanjungang.github.social.share.ShareFragment;
 import io.tanjungang.github.social.video.VideoFragment;
+import rx.Observable;
+import rx.Observer;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Fragment相关问题
@@ -126,7 +139,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (id == R.id.item_news) {
             selected(0);
         } else if (id == R.id.item_video) {
-            selected(1);
+//            selected(1);
+            PhotoPickActivity.SkipToPhotoPickForResult(this, 4, 100);
         } else if (id == R.id.item_setting) {
             selected(2);
         } else if (id == R.id.item_share) {
@@ -186,8 +200,29 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return fragment;
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data == null) return;
+        if (requestCode == 100) {
+            ArrayList<ImageInfo> mPickDatas = (ArrayList<ImageInfo>) data.getSerializableExtra("data");
+            BmobApi.upload(this, mPickDatas, new FileUploadCallback() {
+                @Override
+                public void uploadSuccess(String path, int pos) {
+                    Functions.toast("上传成功");
+                    LogTool.v(TAG, "上传成功：" + "pos:" + pos + "\n" + path);
+                }
+
+                @Override
+                public void uploadFailure(String error) {
+
+                }
+
+                @Override
+                public void progress(int progress, int pos) {
+                    setTitle("path:" + pos + "进度：" + progress);
+                }
+            });
+        }
     }
 }

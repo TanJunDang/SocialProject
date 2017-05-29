@@ -22,13 +22,4 @@ public class HttpReqTool {
         return api;
     }
 
-    /**
-     * @param url      待下载文件的URL
-     * @param savePath 保存位置
-     * @param name     保存的文件名
-     * @param callback 下载回调接口
-     */
-    public void fileDownload(String url, String savePath, String name, FileDownloadCallback callback) {
-    }
-
 }

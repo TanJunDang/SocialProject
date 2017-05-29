@@ -8,7 +8,6 @@ import java.io.Serializable;
  * @Email: TanJunDang@126.com
  * @Date: 2017/5/25
  * @Description:
- *
  */
 public class ImageInfo implements Serializable {
     public String path;

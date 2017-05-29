@@ -3,7 +3,7 @@ package io.tanjungang.github.social.msg.presenter;
 import android.content.Context;
 
 import io.tanjungang.github.social.base.entity.MsgBean;
-import io.tanjungang.github.social.msg.model.BaseModel;
+import io.tanjungang.github.social.msg.model.MsgModel;
 import io.tanjungang.github.social.base.presenter.IMsgPresenter;
 import io.tanjungang.github.social.base.view.IMsgView;
 
@@ -19,7 +19,7 @@ public class MsgPresenter implements IMsgPresenter<MsgBean> {
 
     public MsgPresenter(Context context, IMsgView iMsgView, String type) {
         this.iMsgView = iMsgView;
-        new BaseModel(this, context).request(type);
+        new MsgModel(this, context).request(type);
     }
 
     @Override

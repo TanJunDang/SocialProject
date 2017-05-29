@@ -15,12 +15,12 @@ import io.tanjungang.github.social.msg.presenter.MsgPresenter;
  * Date:2017/4/24
  */
 
-public class BaseModel extends HttpCallback<MsgBean> implements IBaseModel {
+public class MsgModel extends HttpCallback<MsgBean> implements IBaseModel {
 
     private MsgPresenter presenter;
     private Context context;
 
-    public BaseModel(MsgPresenter presenter, Context context) {
+    public MsgModel(MsgPresenter presenter, Context context) {
         this.presenter = presenter;
         this.context = context;
     }

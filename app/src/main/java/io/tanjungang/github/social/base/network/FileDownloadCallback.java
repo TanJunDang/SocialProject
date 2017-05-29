@@ -1,5 +1,7 @@
 package io.tanjundang.github.projectutils.network;
 
+import retrofit2.Callback;
+
 /**
  * Author: TanJunDang
  * Email: TanJunDang@126.com
@@ -18,10 +20,10 @@ public interface FileDownloadCallback {
      * @param path 文件路径
      * @param name 文件名
      */
-    void onSuccess(String path, String name);
+    void onUploadSuccess(String path, String name);
 
     /**
      * @param errorMsg 错误信息
      */
-    void onFailure(String errorMsg);
+    void onUploadFailure(String errorMsg);
 }
