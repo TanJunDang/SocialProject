@@ -22,6 +22,7 @@
                 android:id="@+id/etUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-~!@#$%^?？/{}`[]|\\\——~·`;:&#180;&#183;'+=,.*()~·！“”：，；、;‘’˜¡¿&amp;&quot;&lt;&gt;"
                 android:hint="UserName" />
 
         </android.support.design.widget.TextInputLayout>
@@ -37,6 +38,7 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-~!@#$%^?？/{}`[]|\\\——~·`;:&#180;&#183;'+=,.*()~·！“”：，；、;‘’˜¡¿&amp;&quot;&lt;&gt;"
                 android:hint="Password" />
 
         </android.support.design.widget.TextInputLayout>
@@ -51,6 +53,7 @@
                 android:id="@+id/etPasswordConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-~!@#$%^?？/{}`[]|\\\——~·`;:&#180;&#183;'+=,.*()~·！“”：，；、;‘’˜¡¿&amp;&quot;&lt;&gt;"
                 android:hint="PasswordConfirm" />
 
         </android.support.design.widget.TextInputLayout>
